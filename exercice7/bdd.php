@@ -5,15 +5,15 @@ try {
 } catch (Exception $ex) {
     die('Erreur : ' . $ex->getMessage());
 }  
-if (!empty($_POST['date']) && !empty($_POST['time'])) {
+if (!empty($_GET['id'])) {
 // Gràce à ->query($query) on éxécute la requête SQL et on récupère un objet PDO Statement
-$requete = $database->query('SELECT DATE_FORMAT(appointments.dateHour, "%d/%m/%Y à %Hh%i") AS dateHour, patients.id, patients.lastname, patients.firstname FROM appointments INNER JOIN patients ON patients.id = appointments.idPatients WHERE patients.id= ' . $_GET['id'] . '');
+$requete = $database->query('SELECT DATE_FORMAT(appointments.dateHour, "%d/%m/%Y à %Hh%i") AS dateHour, appointments.id, patients.lastname, patients.firstname FROM appointments INNER JOIN patients ON patients.id = appointments.idPatients WHERE appointments.id= ' . $_GET['id'] . '');
 
 /** 
  * fetchAll() va retourner le résultat sous la forme du paramètre demandé
  * PDO::FETCH_OBJ est le paramètre qui permet d'avoir un tableau d'objet.
  */
-$result = $requete->fetchAll(PDO::FETCH_OBJ);
+$results = $requete->fetchAll(PDO::FETCH_OBJ);
 }
 // Si lesdeux champs sont rempli -> execute le reste..
 if (!empty($_POST['date']) && !empty($_POST['time'])) {

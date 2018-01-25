@@ -54,6 +54,16 @@
                 </div>
         <?php  }
         }
+              
+        if (!empty($_GET['id'])) {
+        foreach ($results as $appointments) { ?>  
+            <div class="jumbotron  div_rendezvous2">
+                <p><span class="bold"><?= 'Date et heure du rendez-vous : ' ?></span><?= $appointments->dateHour; ?></p>
+            </div>
+        <?php } 
+        
+        } 
+        
         // Formulaire
         if (!empty($_GET['id'])) { ?>
             <form method="POST" class="jumbotron center-block">

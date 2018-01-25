@@ -28,7 +28,7 @@
               *  Affiche un message d'erreur si aucun id est affiché
              */
             if (!empty($_GET['id'])) {
-                foreach ($result AS $appointments) {
+                foreach ($results AS $appointments) {
                     echo 'Rendez-vous du patient : ';
                     echo $appointments->lastname . ' ';
                     echo $appointments->firstname;
@@ -39,8 +39,8 @@
             ?></h1><hr/>
             
         <?php
-        if (!empty($_POST['date']) && !empty($_POST['time'])) {
-        foreach ($result as $appointments) { ?>  
+        if (!empty($_GET['id'])) {
+        foreach ($results as $appointments) { ?>  
             <div class="jumbotron  div_rendezvous2">
                 <p><span class="bold"><?= 'Nom du patient : ' ?></span><?= $appointments->lastname . ' ' . $appointments->firstname ?></p>
                 <p><span class="bold"><?= 'Date et heure du rendez-vous : ' ?></span><?= $appointments->dateHour; ?></p>

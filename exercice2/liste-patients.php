@@ -8,8 +8,8 @@
         <title>Affiche la liste des patients</title>
     </head>
     <body>
-        
-         <nav class="navbar navbar-inverse">
+
+        <nav class="navbar navbar-inverse">
             <ul class="nav navbar-nav">
                 <li><a href="../index.php">Menu</a></li>
                 <li><a href="../exercice1/ajout-patient.php">Ajouter un patient</a></li>
@@ -20,24 +20,49 @@
                 <li><a href="../exercice6/liste-rendezvous.php">La liste des rendez-vous</a></li>
                 <li><a href="../exercice7/rendezvous.php">Rendez-vous du patient</a></li>
             </ul>
+
+            <!-- BLOCK RECHERCHE -->
+            <form method="POST">
+                <input type="search" placeholder="Recherche" name="search">
+                <input type="submit" name="send" />
+            </form>
         </nav>
-        
         <h1>Tous les patients</h1><hr/>
-        
-        <?php
-        
-         // Affiche toutes les données lus de la base de donnée
-        foreach ($result AS $patients) { ?>
-        
-            <div class="container jumbotron col-lg-6 identity">
-                <p><span class="bold">Nom : </span><?= $patients['lastname']; ?></p>
-                <p><span class="bold">Prénom : </span><?= $patients['firstname']; ?></p>
-                <p><span class="bold">Date de naissance : </span><?= $patients['birthdate']; ?></p>
-                <p><span class="bold">Téléphone : </span><?= $patients['phone']; ?></p>
-                <p><span class="bold">Adresse e-mail : </span><?= $patients['mail']; ?></p>
-            </div>
-        
+        <div class="row">
+
+            <?php
+            // Affiche toutes les données lus de la base de donnée
+            foreach ($result AS $patients) {
+                ?>
+                <div class="container jumbotron col-lg-6 identity">
+                    <p><span class="bold">Nom : </span><?= $patients['lastname']; ?></p>
+                    <p><span class="bold">Prénom : </span><?= $patients['firstname']; ?></p>
+                    <p><span class="bold">Date de naissance : </span><?= $patients['birthdate']; ?></p>
+                    <p><span class="bold">Téléphone : </span><?= $patients['phone']; ?></p>
+                    <p><span class="bold">Adresse e-mail : </span><?= $patients['mail']; ?></p>
+                </div>
             <?php } ?>
-        
+
+        </div>
+        <!-- SUPPRESION D'UN PATIENT -->
+        <div class="row">
+            <h2 class="text-center">Supprimer un patient et ses rendez-vous</h2><hr/>
+            <form method="POST" class="jumbotron center-block">
+                <label for="appointment">Supprimer le patient  : </label> 
+                <select name="patient_appointment_delete" id="appointment"> 
+
+                    <?php foreach ($result AS $patients) { ?>
+                        <!-- La valeur des options et l'id du patient -->
+                        <option value="<?= $patients['id']; ?>">
+                            <!-- Affiche le nom et prénom des patients suivant la valeur de leurs id -->
+                            <?= $patients['lastname'] . ' ' . $patients['firstname']; ?>
+                        </option>
+                    <?php } ?>    
+
+                </select><br/>  
+                <input type="submit" value="Supprimer" id="submit"/><br/>
+            </form>
+        </div>
+
     </body>
 </html>

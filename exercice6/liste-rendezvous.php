@@ -20,15 +20,43 @@
                 <li><a href="../exercice7/rendezvous.php">Rendez-vous du patient</a></li>
             </ul>
         </nav>
-        <h1>La liste des rendez-vous</h1><hr/>
-
-        <?php foreach ($result as $appointments) { ?>  
         
-            <div class="jumbotron  div_rendezvous col-lg-6">
-                <p><span class="bold"><?= 'Nom du patient : ' ?></span><a href="../exercice7/rendezvous.php?id=<?= $appointments->id ?>"><?= $appointments->lastname . ' ' . $appointments->firstname ?></a></p>
-                <p><span class="bold"><?= 'Date et heure du rendez-vous : '?></span><?= $appointments->dateHour; ?></p>
+        <div class="container-fluid">
+            <div class="row">  
+                <h1>La liste des rendez-vous</h1><hr/>
+                <?php foreach ($results as $appointments) { ?>             
+                    <div class="jumbotron  div_rendezvous col-lg-6">
+                        <p><span class="bold"><?= 'Nom du patient : ' ?></span><a href="../exercice7/rendezvous.php?id=<?= $appointments->id ?>"><?= $appointments->lastname . ' ' . $appointments->firstname ?></a></p>
+                        <p><span class="bold"><?= 'Date et heure du rendez-vous : ' ?></span><?= $appointments->dateHour; ?></p>
+                    </div>
+                <?php } ?>
             </div>
-        
-        <?php } ?>
+
+            <div class="row">
+                <h2 class="text-center">Supprimer un rendez-vous</h2><hr/>
+                
+                <form method="POST" class="jumbotron center-block">
+                    <label for="appointment">Vôtre patient : </label>
+                    
+                    <select name="appointment_delete" id="appointment">
+                        
+                        <?php foreach ($results AS $appointments) { 
+                            ?>
+                            <!-- La valeur des options et l'id du patient -->
+                            
+                            <option value="<?= $appointments->id; ?>">
+                                <!-- Affiche le nom et prénom des patients suivant la valeur de leurs id -->
+                                <?= $appointments->lastname . ' ' . $appointments->firstname; ?>
+                            </option>
+                        <?php } ?>       
+                    </select><br/>  
+                    
+                    <input type="submit" value="Supprimer" id="submit"/><br/>
+                </form>
+                
+            </div>
+
+        </div>
     </body>
 </html>
+
