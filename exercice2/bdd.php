@@ -10,12 +10,38 @@ try {
     die('Erreur : ' . $ex->getMessage());
 }
 
-/*** SELECTIONNE TOUT LES CHAMPS DE LA TABLE PATIENTS
- * Date au format français
- * fetchAll() va retourner le résultat sous la forme du paramètre demandé
- ***/
-$requete = $database->query('SELECT id, lastname, firstname, DATE_FORMAT(birthdate,  \' %d/%m/%Y \') AS birthdate, phone, mail FROM patients');
+
+
+
+//Nous récupérons le contenu de la requête dans $retour_total
+$requete = $database->query('SELECT COUNT(*) AS total FROM patients');
 $result = $requete->fetchAll(PDO::FETCH_ASSOC);
+
+foreach($result AS $total){
+    $messagesParPage = 3;
+    $nombreDePages=ceil($total['total']/$messagesParPage);
+}
+
+if(isset($_GET['page'])){
+     $pageActuelle=intval($_GET['page']);
+     if($pageActuelle>$nombreDePages){
+          $pageActuelle=$nombreDePages;
+     }
+}
+else {
+     $pageActuelle=1;
+}
+$premiereEntree=($pageActuelle-1)*$messagesParPage; // On calcul la première entrée à lire
+ 
+// La requête sql pour récupérer les messages de la page actuelle.
+$requete = $database->query('SELECT * FROM patients ORDER BY id DESC LIMIT '.$premiereEntree.', '.$messagesParPage.'');
+$result = $requete->fetchAll(PDO::FETCH_ASSOC);
+
+
+
+
+
+
 
 /*** SUPPRESSION DU PATIENT ET DE SES RENDEZ-VOUS
  * Si la l'id du patient existe

@@ -41,8 +41,19 @@
                     <p><span class="bold">Téléphone : </span><?= $patients['phone']; ?></p>
                     <p><span class="bold">Adresse e-mail : </span><?= $patients['mail']; ?></p>
                 </div>
-            <?php } ?>
-
+            <?php } ?>           
+        </div>
+        <div class="row">
+            <p class="text-center">
+            <?php
+            for ($i = 1; $i <= $nombreDePages; $i++) {
+                if ($i == $pageActuelle) {
+                    echo ' [ ' . $i . ' ] ';
+                } else {
+                    echo ' <a href="liste-patients.php?page=' . $i . '">' . $i . '</a> ';
+                }
+            }
+            ?></p>
         </div>
         <!-- SUPPRESION D'UN PATIENT -->
         <div class="row">
