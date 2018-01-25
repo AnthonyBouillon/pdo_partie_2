@@ -1,0 +1,5 @@
+<ifModule mod_rewrite.c>
+Options +FollowSymlinks
+RewriteEngine on
+RewriteRule ^profil$ profil-patient.php [L]
+</ifModule>

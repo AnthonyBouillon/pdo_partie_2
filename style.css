@@ -1,0 +1,101 @@
+/* Ajout-patient */
+.red{
+    color: red;
+}
+.jumbotron{
+    max-width: 600px;
+    padding: 40px;
+    border: 2px solid black;
+}
+label{
+    width: 170px;
+}
+#submit{
+    margin-left: 33%;
+}
+.h1_ajout_patient{
+    margin-bottom: 50px;
+}
+/* Liste des patients */
+.identity{
+    margin-bottom: 10px;
+    margin-left: 15px;
+}
+/* profil du patient */
+hr {
+    margin-bottom: 40px!important;
+}
+/* Ajout de rendez-vous */
+.select_ajoutRendezVous{
+    margin-bottom: 20px;
+}
+
+
+
+
+li{
+    display: table-cell;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+
+
+a:link{
+
+}
+a,a:hover{
+    color: blue;
+}
+
+.div_rendezvous{
+    margin-left:200px;
+}
+legend{
+    font-size: 30px;
+}
+hr{
+    margin-bottom: 5%;
+}
+.confirmation{
+    margin-top: 30px;
+    color: green;
+}
+
+@media screen and (max-width: 544px) {
+    h1, legend{
+        font-size: 20px;
+    }
+    .jumbotron{
+        width: 100%;
+    }
+}
+ul{
+    list-style-type: none;
+}
+/* Ajout patients */
+
+/* Liste des patients */
+.identity{
+    border: 2px solid black;
+    margin-bottom: 10px;
+}
+h1{
+    text-align: center;
+}
+nav{
+    background-color: aqua;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+.bold{
+    font-weight: bold;
+    
+}
+.appointment{
+    margin-left: 10%;
+    margin-bottom: 2%;
+}
+.div_rendezvous2{
+   margin-left: 34%;
+}
