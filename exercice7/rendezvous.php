@@ -21,7 +21,6 @@
                 <li><a href="">Rendez-vous du patient</a></li>
             </ul>
         </nav>
-
         <h1><?php
              /*  
               *  Affiche le nom et prénom du client suivant l'id récupéré 

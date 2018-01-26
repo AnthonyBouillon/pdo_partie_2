@@ -8,7 +8,6 @@
         <title>Ajouter un rendez-vous</title>
     </head>
     <body>
-
         <nav class="navbar navbar-inverse">
             <ul class="nav navbar-nav">
                 <li><a href="../index.php">Menu</a></li>
@@ -21,29 +20,26 @@
                 <li><a href="../exercice7/rendezvous.php">Rendez-vous du patient</a></li>
             </ul>
         </nav>
-
         <h1 class="text-center">Prenez un rendez-vous</h1><hr/>
         
-        <form method="POST" class="jumbotron center-block">
-            
+        <!-- FORMULAIRE D'AJOUT DE RENDEZ-VOUS -->
+        <form method="POST" class="jumbotron center-block"> 
             <label for="appointment">Vôtre patient : </label><select name="id" class="select_ajoutRendezVous" id="appointment">
-                
+
                 <?php foreach ($result AS $patients) { ?>
                     <!-- La valeur des options et l'id du patient -->
-                    <option value="<?= $patients['id'] ?>">
+                    <option value="<?= $patients->id ?>">
                         <!-- Affiche le nom et prénom des patients suivant la valeur de leurs id -->
-                        <?= $patients['lastname'] . ' ' . $patients['firstname'] ?>
+                        <?= $patients->lastname . ' ' . $patients->firstname ?>
                     </option>
-                    <?php  } ?>
+                <?php } ?>  
                     
             </select><br/>
-            
             <label for="date">Date du rendez-vous  : </label><input type="date" name="date" id="date" /><br/><br/>
             <label for="time">Heure du rendez-vous  : </label><input type="time" name="time" id="time" /><br/><br/>
             <input type="submit" value="Validez" id="submit"/><br/>
         </form>
-        
-     
+        <!-- Message de validation de prise de rendez-vous -->
         <p class="text-center"><?php if (!empty($_POST['date']) && !empty($_POST['time'])) { echo $message_agreed;} ?></p>
     </body>
 </html>

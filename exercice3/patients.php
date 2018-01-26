@@ -9,7 +9,6 @@
         <title>Affiche la liste des patients</title>
     </head>
     <body>
-        
         <nav class="navbar navbar-inverse">
             <ul class="nav navbar-nav">
                 <li><a href="../index.php">Menu</a></li>
@@ -22,17 +21,12 @@
                 <li><a href="../exercice7/rendezvous.php">Rendez-vous du patient</a></li>
             </ul>
         </nav>
-        
         <h1>La liste des patients</h1><hr/>
-        
-        <?php
-        /*
-         * Un lien qui diffère suivant l'id de la ligne lu
-         * Affiche la liste des patients
-         */
+        <?php 
+        // Un lien qui diffère suivant l'id de la ligne lu
         foreach ($results AS $patient) { ?>
             <div class="container">
-                <p><i class="fa fa-user"></i><a href="profil-patient.php?id=<?= $patient['id'] ?>"><?= $patient['lastname'] . ' ' . $patient['firstname']; ?></a></p>
+                <p><i class="fa fa-user"></i><a href="profil-patient.php?id=<?= $patient->id ?>"><?= $patient->lastname . ' ' . $patient->firstname; ?></a></p>
             </div>
             <?php } ?>
     </body>

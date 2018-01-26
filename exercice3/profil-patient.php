@@ -8,7 +8,6 @@
         <title>Affiche le profil du patient</title>
     </head>
     <body>
-        
         <nav class="navbar navbar-inverse">
             <ul class="nav navbar-nav">
                 <li><a href="../index.php">Menu</a></li>
@@ -21,50 +20,44 @@
                 <li><a href="../exercice7/rendezvous.php">Rendez-vous du patient</a></li>
             </ul>
         </nav>
-       
-        <h1 class="h1_profil">
-                        
+        <h1 class="h1_profil">                
             <?php
-             /*  
-              *  Affiche le nom et prénom du client suivant l'id récupéré 
-              *  Affiche un message d'erreur si aucun id est affiché
-             */
+            // TITRE : IDENTITÉ DU PATIENT OR MESSAGE D'ERREUR
             if (!empty($_GET['id'])) {
                 foreach ($result AS $patients) {
                     echo 'Profil du patient : ';
-                    echo $patients['lastname'] . ' ';
-                    echo $patients['firstname'];
+                    echo $patients->lastname . ' ';
+                    echo $patients->firstname;
                 }
             } else {
                 echo $message_error;
-            } ?>
-            
+            } ?>     
         </h1><hr/>
         
         <?php
-        // Donnée du patient
+        // IDENTITÉ DU PATIENT
         if (!empty($_GET['id'])) {
             foreach ($result AS $patients) { ?>
                 <div class="container jumbotron ">
-                    <p><span class="bold">Nom : </span><?= $patients['lastname']; ?></p>
-                    <p><span class="bold">Prénom : </span><?= $patients['firstname']; ?></p>
-                    <p><span class="bold">Date de naissance : </span><?= $patients['birthdate']; ?></p>
-                    <p><span class="bold">Téléphone : </span><?= $patients['phone']; ?></p>
-                    <p><span class="bold">Adresse e-mail : </span><?= $patients['mail']; ?></p>
+                    <p><span class="bold">Nom : </span><?= $patients->lastname; ?></p>
+                    <p><span class="bold">Prénom : </span><?= $patients->firstname; ?></p>
+                    <p><span class="bold">Date de naissance : </span><?= $patients->birthdate; ?></p>
+                    <p><span class="bold">Téléphone : </span><?= $patients->phone; ?></p>
+                    <p><span class="bold">Adresse e-mail : </span><?= $patients->mail; ?></p>
                 </div>
         <?php  }
         }
-              
+        
+        // RENDEZ-VOUS DU PATIENT      
         if (!empty($_GET['id'])) {
         foreach ($results as $appointments) { ?>  
             <div class="jumbotron  div_rendezvous2">
                 <p><span class="bold"><?= 'Date et heure du rendez-vous : ' ?></span><?= $appointments->dateHour; ?></p>
             </div>
-        <?php } 
-        
+        <?php }    
         } 
         
-        // Formulaire
+        // FORMULAIRE MODIFICATION DU PROFIL
         if (!empty($_GET['id'])) { ?>
             <form method="POST" class="jumbotron center-block">
                 <legend class="text-center">Modification du profil du patient</legend>

@@ -6,14 +6,13 @@ try {
     die('Erreur : ' . $ex->getMessage());
 }                 
 // Gràce à ->query($query) on éxécute la requête SQL et on récupère un objet PDO Statement
-$requete = $database->query('SELECT DATE_FORMAT(appointments.dateHour, "%d/%m/%Y à %Hh%i") AS dateHour, appointments.id, patients.lastname, patients.firstname FROM appointments INNER JOIN patients ON patients.id = appointments.idPatients');
-/** 
- * fetchAll() va retourner le résultat sous la forme du paramètre demandé
- * PDO::FETCH_OBJ est le paramètre qui permet d'avoir un tableau d'objet.
- */
+$requete = $database->query('SELECT DATE_FORMAT(`appointments`.`dateHour`, \'%d/%m/%Y à %Hh%i\') AS dateHour, `appointments`.`id`, `patients`.`lastname`, `patients`.`firstname` FROM `appointments` INNER JOIN `patients` ON `patients`.`id` = `appointments`.`idPatients`');
 $results = $requete->fetchAll(PDO::FETCH_OBJ);
+
+// SUPPRESSION DE RENDEZ-VOUS
 if(isset($_POST['appointment_delete'])){
-    $requete = $database->query('DELETE FROM `appointments` WHERE id= '. $_POST['appointment_delete'] . '');
+    $requete = $database->query('DELETE FROM `appointments` WHERE `id`= '. $_POST['appointment_delete'] . '');
+    // Rafraichissement de la page suite à la suppression du rendez-vous
     header('refresh:0, url=liste-rendezvous.php');
 }
 

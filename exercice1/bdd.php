@@ -35,7 +35,7 @@ if (!empty($_POST['lastname']) && !empty($_POST['firstname']) && !empty($_POST['
     }
 
     if (!empty($_POST['lastname']) == $regexLastname && !empty($_POST['firstname']) == $regexFirstname && !empty($_POST['phone']) == $regexPhone && !empty($_POST['email']) == $regexEmail) {
-        $requete = $database->prepare("INSERT INTO `patients`(`lastname`, `firstname`, `birthdate`, `phone`, `mail`) VALUES (' " . $_POST['lastname'] . " ', ' " . $_POST['firstname'] . " ', ' " . $_POST['birthdate'] . " ', ' " . $_POST['phone'] . " ', ' " . $_POST['email'] . " ') ");
+        $requete = $database->prepare('INSERT INTO `patients`(`lastname`, `firstname`, `birthdate`, `phone`, `mail`) VALUES ( \'' . $_POST['lastname'] . '\' , \'' . $_POST['firstname'] . '\' ,  \'' . $_POST['birthdate'] . '\', \'' . $_POST['phone'] . '\' , \'' . $_POST['email'] . '\') ');
         $requete->execute();
         $agreed = 'Vous êtes bien inscrit';
     }

@@ -29,25 +29,24 @@
         </nav>
         <h1>Tous les patients</h1><hr/>
         <div class="row">
-
-            <?php
-            // Affiche toutes les données lus de la base de donnée
-            foreach ($result AS $patients) {
-                ?>
+            <!-- Affiche toutes les données lus de la base de donnée -->
+            <?php foreach ($result AS $patients) { ?>
                 <div class="container jumbotron col-lg-6 identity">
-                    <p><span class="bold">Nom : </span><?= $patients['lastname']; ?></p>
-                    <p><span class="bold">Prénom : </span><?= $patients['firstname']; ?></p>
-                    <p><span class="bold">Date de naissance : </span><?= $patients['birthdate']; ?></p>
-                    <p><span class="bold">Téléphone : </span><?= $patients['phone']; ?></p>
-                    <p><span class="bold">Adresse e-mail : </span><?= $patients['mail']; ?></p>
+                    <p><span class="bold">Nom : </span><?= $patients->lastname; ?></p>
+                    <p><span class="bold">Prénom : </span><?= $patients->firstname; ?></p>
+                    <p><span class="bold">Date de naissance : </span><?= $patients->birthdate; ?></p>
+                    <p><span class="bold">Téléphone : </span><?= $patients->phone; ?></p>
+                    <p><span class="bold">Adresse e-mail : </span><?= $patients->mail; ?></p>
                 </div>
             <?php } ?>           
         </div>
+        
+        <!-- PAGINATION -->
         <div class="row">
             <p class="text-center">
             <?php
-            for ($i = 1; $i <= $nombreDePages; $i++) {
-                if ($i == $pageActuelle) {
+            for ($i = 1; $i <= $numberOfPages; $i++) {
+                if ($i == $currentPage) {
                     echo ' [ ' . $i . ' ] ';
                 } else {
                     echo ' <a href="liste-patients.php?page=' . $i . '">' . $i . '</a> ';
@@ -55,25 +54,22 @@
             }
             ?></p>
         </div>
+        
         <!-- SUPPRESION D'UN PATIENT -->
         <div class="row">
             <h2 class="text-center">Supprimer un patient et ses rendez-vous</h2><hr/>
             <form method="POST" class="jumbotron center-block">
                 <label for="appointment">Supprimer le patient  : </label> 
                 <select name="patient_appointment_delete" id="appointment"> 
-
                     <?php foreach ($result AS $patients) { ?>
-                        <!-- La valeur des options et l'id du patient -->
-                        <option value="<?= $patients['id']; ?>">
-                            <!-- Affiche le nom et prénom des patients suivant la valeur de leurs id -->
-                            <?= $patients['lastname'] . ' ' . $patients['firstname']; ?>
+                        <option value="<?= $patients->id; ?>">
+                            <?= $patients->lastname . ' ' . $patients->firstname; ?>
                         </option>
                     <?php } ?>    
-
                 </select><br/>  
                 <input type="submit" value="Supprimer" id="submit"/><br/>
             </form>
         </div>
-
+        
     </body>
 </html>
